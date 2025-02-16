@@ -50,7 +50,6 @@ class Willy:
         """Draw."""
         scale = self.scale
 
-
         pix = []
         start_y = (-scale * 15) + self.y
         colour = rgb_from_hue(self.hue)
@@ -68,7 +67,7 @@ class Willy:
                             colour=colour,
                             size=scale,
                             opacity=self.opacity,
-                            rotation=rotation
+                            rotation=rotation,
                         ),
                     )
                 start_x += scale * 2
