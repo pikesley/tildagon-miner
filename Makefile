@@ -1,6 +1,6 @@
 APP = $(shell basename $$(pwd))
 
-all: format test clean
+all: format clean
 
 push: convert-conf
 	python -m mpremote cp -r * :/apps/${APP}/

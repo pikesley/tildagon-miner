@@ -1,3 +1,4 @@
+import os
 from random import choice, randint
 
 from ..common.rgb_from_hue import rgb_from_hue
@@ -7,6 +8,7 @@ from ..common.shapes.pentagon import Pentagon
 from ..common.shapes.pentagram import Pentagram
 from ..common.shapes.square import Square
 from ..common.shapes.triangle import Triangle
+from ..lib.asset_path import ASSET_PATH
 from .conf import conf
 
 shapes_list = [
@@ -31,11 +33,18 @@ class Willy:
         self.opacity = opacity
         self.speed = speed
 
-        self.frames = conf["frames"]
-        self.frame_keys = ["regular", "wide", "regular", "narrow"]
-        self.frame_key_index = 0
         self.shapes_index = 0
         self.randomise = conf["start-randomised"]
+
+    def load_frames(self, name):
+        """Load frames."""
+        self.frames = []
+        frame_data = os.listdir(f"{ASSET_PATH}/bitmaps/{name}")
+        for item in sorted(frame_data):
+            with open(f"{ASSET_PATH}/bitmaps/{name}/{item}") as f:
+                self.frames.append([])
+                for line in f.read().strip().split("\n"):
+                    self.frames[-1].append([int(x) for x in list(line)])
 
     def move(self):
         """Walk."""
@@ -43,7 +52,7 @@ class Willy:
 
     def animate(self):
         """Animate."""
-        self.frame_key_index = (self.frame_key_index + 1) % len(self.frame_keys)
+        self.frames = self.frames[1:] + [self.frames[0]]
 
     @property
     def pixels(self):
@@ -53,9 +62,8 @@ class Willy:
         pix = []
         start_y = (-scale * 15) + self.y
         colour = rgb_from_hue(self.hue)
-        for item in self.frames[self.frame_keys[self.frame_key_index]]:
-            bits = f"{item:010b}"
-            start_x = scale * -9
+        for bits in self.frames[0]:
+            start_x = scale * -(len(bits))
             for bit in bits:
                 if int(bit) == 1:
                     rotation = 0
@@ -73,6 +81,7 @@ class Willy:
                 start_x += scale * 2
 
             start_y += scale * 2
+
         return pix
 
     @property

@@ -1,8 +1,3 @@
-frames:
-  narrow: [12, 124, 248, 104, 124, 120, 48, 120, 220, 220, 220, 236, 120, 48, 48, 56]
-  regular: [12, 124, 248, 104, 124, 120, 48, 120, 252, 252, 494, 502, 120, 236, 220, 238]
-  wide:  [12, 124, 248, 104, 124, 120, 48, 120, 252, 510, 1023, 891, 124, 237, 391, 454]
-
 scale-factor: 0.05
 led-brightness: 0.5
 rotation-amount: 4
@@ -12,5 +7,5 @@ willy-size:
   max: 4
 
 start-randomised: False
-
+frames-per-sprite: 300 # minimum
 rotation-offset: 260  # for leds
