@@ -59,7 +59,7 @@
   "rotation-amount": 4,
   "rotation-offset": 260,
   "scale-factor": 0.05,
-  "start-randomised": true,
+  "start-randomised": false,
   "willy-size": {
     "default": 2.3,
     "max": 4,

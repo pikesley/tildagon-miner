@@ -11,6 +11,6 @@ willy-size:
   min: 1
   max: 4
 
-start-randomised: True
+start-randomised: False
 
 rotation-offset: 260  # for leds

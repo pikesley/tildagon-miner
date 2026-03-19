@@ -1,12 +1,12 @@
 from random import choice, randint
 
-from ..pikesley.rgb_from_hue.rgb_from_hue import rgb_from_hue
-from ..pikesley.shapes.circle import Circle
-from ..pikesley.shapes.hexagon import Hexagon
-from ..pikesley.shapes.pentagon import Pentagon
-from ..pikesley.shapes.pentagram import Pentagram
-from ..pikesley.shapes.square import Square
-from ..pikesley.shapes.triangle import Triangle
+from ..common.rgb_from_hue import rgb_from_hue
+from ..common.shapes.circle import Circle
+from ..common.shapes.hexagon import Hexagon
+from ..common.shapes.pentagon import Pentagon
+from ..common.shapes.pentagram import Pentagram
+from ..common.shapes.square import Square
+from ..common.shapes.triangle import Triangle
 from .conf import conf
 
 shapes_list = [

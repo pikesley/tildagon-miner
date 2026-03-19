@@ -8,12 +8,12 @@ from tildagonos import tildagonos
 
 import app
 
+from .common.led_manager import LEDManager
+from .common.rgb_from_hue import rgb_from_hue
 from .lib.background import Background
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
 from .lib.willy import Willy
-from .pikesley.angles_for_leds.angles_for_leds import led_for_angle
-from .pikesley.rgb_from_hue.rgb_from_hue import rgb_from_hue
 
 
 class Miner(app.App):
@@ -30,6 +30,7 @@ class Miner(app.App):
         self.rotation_increment = conf["rotation-amount"]
         self.scale_direction = "up"
 
+        self.led_man = LEDManager()
         y = 110 - (self.scale * 16)
         self.willy = Willy(
             x=0, y=y, scale=self.scale, hue=self.hue, opacity=self.opacity
@@ -89,7 +90,9 @@ class Miner(app.App):
         """Light the lights."""
         colour = rgb_from_hue(self.hue)
         tildagonos.leds[
-            led_for_angle((conf["rotation-offset"] - self.rotation) % 360)
+            self.led_man.leds_for_angle(
+                (conf["rotation-offset"] - self.rotation) % 360
+            )["unified"]
         ] = [gamma_corrections[int(i * 255 * conf["led-brightness"])] for i in colour]
 
         tildagonos.leds.write()
