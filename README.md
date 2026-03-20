@@ -1,3 +1,3 @@
 # Manic Miner
 
-Miner Willy wandering around your Tildagon screen
+Manic Miner sprites wandering around your Tildagon screen
