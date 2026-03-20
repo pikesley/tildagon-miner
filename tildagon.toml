@@ -4,7 +4,7 @@ name = "Miner"
 
 # The submenu where your app should appear.
 # One of: "Badge", "Music", "Media", "Apps", "Games"
-category = "Games"
+category = "Badge"
 
 # OPTIONAL: Same as above, for compatibility with older firmware
 # versions that can't handle categories introduced afterwards.
@@ -28,7 +28,7 @@ author = "pikesley"
 license = "MIT"
 
 # URL to the repository of your app.
-url = "https://www.github.com/tildagon-miner"
+url = "https://www.github.com/pikesley/tildagon-miner"
 
 # Description of your app.  Maximum 140 characters!
 description = "Manic Miner sprites wandering around your Tildagon"
@@ -37,4 +37,4 @@ description = "Manic Miner sprites wandering around your Tildagon"
 # increased, we interpret this as a new version being released.
 #
 # Version number must be an integer!
-version = "0.0.2"
+version = "0.0.3"

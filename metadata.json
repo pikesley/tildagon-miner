@@ -1,5 +1,1 @@
-{
-    "name": "Miner",
-    "path": "apps.miner.app",
-    "callable": "Miner"
-  }
+{"name": "Miner", "version": "0.0.2", "hidden": false}
