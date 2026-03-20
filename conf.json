@@ -4,10 +4,10 @@
   "rotation-amount": 4,
   "rotation-offset": 260,
   "scale-factor": 0.05,
-  "start-randomised": false,
-  "willy-size": {
+  "sprite-size": {
     "default": 2.3,
     "max": 4,
     "min": 1
-  }
+  },
+  "start-randomised": false
 }

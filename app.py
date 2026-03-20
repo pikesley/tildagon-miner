@@ -15,7 +15,7 @@ from .lib.asset_path import ASSET_PATH
 from .lib.background import Background
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
-from .lib.willy import Willy
+from .lib.sprite import Sprite
 
 
 class Miner(app.App):
@@ -26,7 +26,7 @@ class Miner(app.App):
         eventbus.emit(PatternDisable())
         self.button_states = Buttons(self)
         self.hue = random()
-        self.scale = conf["willy-size"]["default"]
+        self.scale = conf["sprite-size"]["default"]
         self.opacity = 1.0
         self.rotation = 0
         self.rotation_increment = conf["rotation-amount"]
@@ -36,18 +36,18 @@ class Miner(app.App):
 
         self.led_man = LEDManager()
         y = 110 - (self.scale * 16)
-        self.willy = Willy(
+        self.sprite = Sprite(
             x=0, y=y, scale=self.scale, hue=self.hue, opacity=self.opacity
         )
-        self.willy.load_frames(self.sprites[0])
+        self.sprite.load_frames(self.sprites[0])
 
     def update(self, _):
         """Update."""
         self.scan_buttons()
-        self.willy.animate()
-        self.willy.hue = self.hue
-        self.willy.scale = self.scale
-        self.willy.y = 110 - (self.scale * 16)
+        self.sprite.animate()
+        self.sprite.hue = self.hue
+        self.sprite.scale = self.scale
+        self.sprite.y = 110 - (self.scale * 16)
 
         self.hue += 0.001
         self.rotation = (self.rotation - self.rotation_increment) % 360
@@ -56,21 +56,21 @@ class Miner(app.App):
 
         self.frame_count += 1
         if (
-            self.willy.scale <= conf["willy-size"]["min"]
+            self.sprite.scale <= conf["sprite-size"]["min"]
             and self.frame_count >= conf["frames-per-sprite"]
         ):
-            self.willy.load_frames(choice(self.sprites))
+            self.sprite.load_frames(choice(self.sprites))
             self.frame_count = 0
 
     def adjust_scale(self):
         """Scale up or down."""
         if self.scale_direction == "up":
-            if self.scale < conf["willy-size"]["max"]:
+            if self.scale < conf["sprite-size"]["max"]:
                 self.scale += conf["scale-factor"]
             else:
                 self.scale_direction = "down"
 
-        elif self.scale > conf["willy-size"]["min"]:
+        elif self.scale > conf["sprite-size"]["min"]:
             self.scale -= conf["scale-factor"]
         else:
             self.scale_direction = "up"
@@ -81,14 +81,14 @@ class Miner(app.App):
         self.overlays = []
         self.overlays.append(Background(colour=rgb_from_hue((self.hue + 0.5) % 1)))
 
-        self.overlays.extend(self.willy.pixels)
+        self.overlays.extend(self.sprite.pixels)
 
         self.draw_overlays(ctx)
 
     def next_sprite(self):
         """Roll sprites."""
         self.sprites = self.sprites[1:] + [self.sprites[0]]
-        self.willy.load_frames(self.sprites[0])
+        self.sprite.load_frames(self.sprites[0])
 
     def scan_buttons(self):
         """Buttons."""
@@ -98,11 +98,11 @@ class Miner(app.App):
 
         if self.button_states.get(BUTTON_TYPES["RIGHT"]):
             self.button_states.clear()
-            self.willy.bump_index()
+            self.sprite.bump_index()
 
         if self.button_states.get(BUTTON_TYPES["LEFT"]):
             self.button_states.clear()
-            self.willy.randomise = not self.willy.randomise
+            self.sprite.randomise = not self.sprite.randomise
 
         if self.button_states.get(BUTTON_TYPES["UP"]):
             self.button_states.clear()
@@ -110,7 +110,7 @@ class Miner(app.App):
 
         if self.button_states.get(BUTTON_TYPES["DOWN"]):
             self.button_states.clear()
-            self.willy.load_frames(choice(self.sprites))
+            self.sprite.load_frames(choice(self.sprites))
 
     def light_leds(self):
         """Light the lights."""

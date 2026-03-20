@@ -1,7 +1,7 @@
 scale-factor: 0.05
 led-brightness: 0.5
 rotation-amount: 4
-willy-size:
+sprite-size:
   default: 2.3
   min: 1
   max: 4

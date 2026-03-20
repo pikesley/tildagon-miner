@@ -8,7 +8,7 @@ from ..common.shapes.pentagon import Pentagon
 from ..common.shapes.pentagram import Pentagram
 from ..common.shapes.square import Square
 from ..common.shapes.triangle import Triangle
-from ..lib.asset_path import ASSET_PATH
+from .asset_path import ASSET_PATH
 from .conf import conf
 
 shapes_list = [
@@ -21,7 +21,7 @@ shapes_list = [
 ]
 
 
-class Willy:
+class Sprite:
     """Willy."""
 
     def __init__(self, x=0, y=0, scale=5, hue=1.0, opacity=0.7, speed=1):  # noqa: PLR0913
