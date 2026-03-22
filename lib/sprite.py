@@ -1,3 +1,4 @@
+import gzip
 import os
 from random import choice, randint
 
@@ -41,10 +42,12 @@ class Sprite:
         self.frames = []
         frame_data = os.listdir(f"{ASSET_PATH}/bitmaps/{name}")
         for item in sorted(frame_data):
-            with open(f"{ASSET_PATH}/bitmaps/{name}/{item}") as f:
-                self.frames.append([])
-                for line in f.read().strip().split("\n"):
-                    self.frames[-1].append([int(x) for x in list(line)])
+            # with gzip.decompress(open(f"{ASSET_PATH}/bitmaps/{name}/{item}", "rb").read()) as f:
+                # with gzip.open(f"{data_root}/{item}") as f:
+            self.frames.append([])
+            data = gzip.decompress(open(f"{ASSET_PATH}/bitmaps/{name}/{item}", "rb").read())
+            for line in data.decode().strip().split("\n"):
+                self.frames[-1].append([int(x) for x in list(line)])
 
     def move(self):
         """Walk."""
