@@ -96,21 +96,21 @@ class Miner(app.App):
             self.button_states.clear()
             self.minimise()
 
-        if self.button_states.get(BUTTON_TYPES["RIGHT"]):
-            self.button_states.clear()
-            self.sprite.bump_index()
+        # if self.button_states.get(BUTTON_TYPES["RIGHT"]):
+        #     self.button_states.clear()
+        #     self.sprite.bump_index()
 
-        if self.button_states.get(BUTTON_TYPES["LEFT"]):
-            self.button_states.clear()
-            self.sprite.randomise = not self.sprite.randomise
+        # if self.button_states.get(BUTTON_TYPES["LEFT"]):
+        #     self.button_states.clear()
+        #     self.sprite.randomise = not self.sprite.randomise
 
-        if self.button_states.get(BUTTON_TYPES["UP"]):
-            self.button_states.clear()
-            self.next_sprite()
+        # if self.button_states.get(BUTTON_TYPES["UP"]):
+        #     self.button_states.clear()
+        #     self.next_sprite()
 
-        if self.button_states.get(BUTTON_TYPES["DOWN"]):
-            self.button_states.clear()
-            self.sprite.load_frames(choice(self.sprites))
+        # if self.button_states.get(BUTTON_TYPES["DOWN"]):
+        #     self.button_states.clear()
+        #     self.sprite.load_frames(choice(self.sprites))
 
     def light_leds(self):
         """Light the lights."""

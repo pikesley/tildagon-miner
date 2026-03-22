@@ -7,7 +7,7 @@
   "sprite-size": {
     "default": 2.3,
     "max": 4,
-    "min": 1
+    "min": 0.2
   },
   "start-randomised": false
 }

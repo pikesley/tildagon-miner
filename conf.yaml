@@ -3,7 +3,7 @@ led-brightness: 0.5
 rotation-amount: 4
 sprite-size:
   default: 2.3
-  min: 1
+  min: 0.2
   max: 4
 
 start-randomised: False
